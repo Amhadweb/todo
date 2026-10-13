@@ -1,17 +1,8 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-import Todo from "./Todo";
+import { Suspense } from "react";
 import LogoutButton from "./LogoutButton";
+import TodoWrapper from "./TodoWrapper";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const session = await auth();
-
-  if (!session) {
-    redirect("/login");
-  }
-
+export default function Home() {
   return (
     <main className="min-h-screen flex items-start justify-center p-6">
       <div className="w-full max-w-md">
@@ -21,10 +12,9 @@ export default async function Home() {
           </h1>
           <LogoutButton />
         </div>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          {session.user.email}
-        </p>
-        <Todo />
+        <Suspense fallback={<p className="text-gray-500">Загрузка...</p>}>
+          <TodoWrapper />
+        </Suspense>
       </div>
     </main>
   );
