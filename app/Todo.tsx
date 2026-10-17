@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { pluralize } from "../lib/format";
+import { Task } from "../lib/types";
 
 export default function Todo() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [text, setText] = useState("");
   const [filter, setFilter] = useState("all");
 
@@ -35,7 +36,7 @@ export default function Todo() {
     loadTasks();
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(id: number) {
     await fetch("/api/tasks", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -45,7 +46,7 @@ export default function Todo() {
     loadTasks();
   }
 
-  async function handleToggle(task) {
+  async function handleToggle(task: Task) {
   await fetch("/api/tasks", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
