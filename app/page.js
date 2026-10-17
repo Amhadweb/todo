@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { connection } from "next/server";
 import LogoutButton from "./LogoutButton";
 import TodoWrapper from "./TodoWrapper";
 

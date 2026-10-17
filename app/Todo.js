@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { pluralize } from "../lib/format";
 
 export default function Todo() {
   const [tasks, setTasks] = useState([]);
@@ -12,10 +13,14 @@ export default function Todo() {
   }, []);
 
   async function loadTasks() {
+  try {
     const response = await fetch("/api/tasks");
     const data = await response.json();
     setTasks(data);
+  } catch (error) {
+    console.error("Ошибка загрузки:", error);
   }
+}
 
   async function handleAdd() {
     if (text === "") return;
@@ -62,6 +67,7 @@ const visibleTasks = tasks.filter((task) => {
 
   return (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-4 transition-colors">
+    <p>{pluralize(tasks.length, "задача")}</p>
 
     {/* ГРАФИК ПРОГРЕССА */}
     <div className="space-y-1">
