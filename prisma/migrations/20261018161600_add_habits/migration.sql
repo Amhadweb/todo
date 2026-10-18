@@ -1,0 +1,25 @@
+-- Создаём таблицу Habit
+CREATE TABLE "Habit" (
+  "id" SERIAL NOT NULL,
+  "title" TEXT NOT NULL,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "userId" TEXT NOT NULL,
+  CONSTRAINT "Habit_pkey" PRIMARY KEY ("id")
+);
+
+ALTER TABLE "Habit" ADD CONSTRAINT "Habit_userId_fkey"
+  FOREIGN KEY ("userId") REFERENCES "User"("id")
+  ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Создаём таблицу CheckIn
+CREATE TABLE "CheckIn" (
+  "id" SERIAL NOT NULL,
+  "date" TEXT NOT NULL,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "habitId" INTEGER NOT NULL,
+  CONSTRAINT "CheckIn_pkey" PRIMARY KEY ("id")
+);
+
+ALTER TABLE "CheckIn" ADD CONSTRAINT "CheckIn_habitId_fkey"
+  FOREIGN KEY ("habitId") REFERENCES "Habit"("id")
+  ON DELETE CASCADE ON UPDATE CASCADE;

@@ -23,3 +23,20 @@ model Task {
   userId    String
   user      User     @relation(fields: [userId], references: [id])
 }
+
+model Habit {
+  id        Int       @id @default(autoincrement())
+  title     String
+  createdAt DateTime  @default(now())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  checkIns  CheckIn[] // У одной привычки много отметок
+}
+
+model CheckIn {
+  id        Int      @id @default(autoincrement())
+  date      String   // Дата в формате "2026-10-18"
+  createdAt DateTime @default(now())
+  habitId   Int
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+}
