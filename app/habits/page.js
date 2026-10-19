@@ -1,6 +1,6 @@
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
-import HabitTracker from "./HabitTracker";
+import HabitTracker from "../HabitTracker";
 import LogoutButton from "../LogoutButton";
 
 export default async function HabitsPage() {
