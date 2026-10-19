@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { pluralize } from "../lib/format";
 import { Task } from "../lib/types";
 
@@ -56,15 +56,19 @@ export default function Todo() {
   loadTasks();
 }
 
-const doneCount = tasks.filter((t) => t.done).length;
-const total = tasks.length;
-const percent = total === 0 ? 0 : Math.round((doneCount / total) * 100);
+const percent = useMemo(() => {
+  const doneCount = tasks.filter((t) => t.done).length;
+  const total = tasks.length;
+  return total === 0 ? 0 : Math.round((doneCount / total) * 100);
+}, [tasks]);
 
-const visibleTasks = tasks.filter((task) => {
-  if (filter === "active") return !task.done;
-  if (filter === "done") return task.done;
-  return true;
-});
+const visibleTasks = useMemo(() => {
+  return tasks.filter((task) => {
+    if (filter === "active") return !task.done;
+    if (filter === "done") return task.done;
+    return true;
+  });
+}, [tasks, filter]); 
 
   return (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-4 transition-colors">
