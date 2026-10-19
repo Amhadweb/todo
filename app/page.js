@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../components/LogoutButton";
 import TodoWrapper from "./TodoWrapper";
-import HabitTracker from "./HabitTracker";
+import HabitTracker from "../features/habits/HabitTracker";
 import Tabs from "./Tabs";
 
 export const instant = false;

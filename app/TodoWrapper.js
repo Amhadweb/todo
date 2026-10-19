@@ -1,6 +1,6 @@
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
-import Todo from "./Todo";
+import Todo from "../features/todos/Todo";
 
 export default async function TodoWrapper() {
   const session = await auth();
