@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import HabitTracker from "../HabitTracker";
 import LogoutButton from "../LogoutButton";
 
+export const instant = false;
+
 export default async function HabitsPage() {
   const session = await auth();
 
