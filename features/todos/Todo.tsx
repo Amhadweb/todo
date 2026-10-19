@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { pluralize } from "../lib/format";
-import { Task } from "../lib/types";
+import { pluralize } from "../../lib/format";
+import { Task } from "../../lib/types";
 
 export default function Todo() {
   const [tasks, setTasks] = useState<Task[]>([]);
