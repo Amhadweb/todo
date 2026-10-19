@@ -8,6 +8,7 @@ const nextConfig = {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
+        serverExternalPackages: ['@prisma/client', 'prisma', 'pg'],
       },
     },
   },
