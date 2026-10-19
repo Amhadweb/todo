@@ -1,7 +1,7 @@
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
-import HabitTracker from "../HabitTracker";
-import LogoutButton from "../LogoutButton";
+import HabitTracker from "../../features/habits/HabitTracker";
+import LogoutButton from "../..components/LogoutButton";
 
 export const instant = false;
 
